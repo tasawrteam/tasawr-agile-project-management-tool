@@ -1,0 +1,29 @@
+<div class='product'>
+  <h1>
+    <%= link_to 'Products', products_url %> &raquo;
+    <%= link_to @product.name, product_url(@product.id) %> &raquo;
+    <%= link_to 'Backlogs', product_product_backlogs_url(:product_id => @product.id) %> &raquo;
+    <%= @product_backlog.name %>
+  </h1>
+  <div class='item'>
+    <div class='content'>
+      <h4>
+        #<%= @backlog_item.id %> - <%= @backlog_item.title %> - Size (<%= @backlog_item.item_size %>) - <%= @backlog_item.item_priority %> (<%= BacklogItem::PRIORITY_MAP[@backlog_item.item_priority] %>)
+      </h4>
+      <%= simple_format(h(@backlog_item.description)) %>
+    </div>
+    <div class='tools'>
+      <%= link_to 'edit', edit_product_product_backlog_backlog_item_url(
+          :product_id => @product.id,
+          :product_backlog_id => @product_backlog.id, :id => @backlog_item.id) %> .
+      <%= link_to 'delete', product_product_backlog_backlog_items_url(
+          :product_id => @product.id,
+          :id => @backlog_item.id),
+                  :method => :delete, :confirm => 'Do you really want to remove this item?' %> .
+      <%= link_to 'tasks', product_product_backlog_backlog_item_tasks_url(
+          :product_id => @product.id,
+          :product_backlog_id => @product_backlog.id, :backlog_item_id => @backlog_item.id) %>
+    </div>
+  </div>
+  <hr/>
+</div>

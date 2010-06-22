@@ -1,0 +1,14 @@
+<dl>
+  <dt><%= f.label :task_type %></dt>
+  <dd><%= f.select :task_type, Task::TYPES %></dd>
+</dl>
+
+<dl>
+  <dt><%= f.label :description %></dt>
+  <dd><%= f.text_area :description %></dd>
+</dl>
+
+<dl>
+  <dt><%= f.label :task_status %></dt>
+  <dd><%= f.select :task_status, Task::STATUS %></dd>
+</dl>

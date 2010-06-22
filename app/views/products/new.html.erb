@@ -1,0 +1,16 @@
+<div class='product'>
+  <h1><%= link_to 'Products', products_url %></h1>
+
+  <div class='form'>
+    <% form_for @product, :html => {:class => 'niceform'} do |f| %>
+      <%= render :partial => 'form', :locals => {:f => f} %>
+
+      <dl>
+        <dt>&nbsp;</dt>
+        <dd><%= f.submit 'Add product' %></dd>
+      </dl>
+    <% end %>
+  </div>
+</div>
+
+<%= render :partial => 'common/niceform' %>

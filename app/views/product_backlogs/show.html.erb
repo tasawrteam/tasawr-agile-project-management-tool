@@ -1,0 +1,29 @@
+<div class='product'>
+  <h1>
+    <%= link_to "##{@product_backlog.id}", product_product_backlog_url(:product_id => @product.id, :id => @product_backlog.id) -%>
+    - <%= @product_backlog.name %>
+  </h1>
+
+  <div class='content'>
+    <%= simple_format(h(@product_backlog.description)) %>
+  </div>
+  <div class='tools' id='product_links'>
+    <%= link_to 'edit', edit_product_product_backlog_url(
+        :product_id => @product.id, :id => @product_backlog.id),
+                :title => 'Edit product backlog', :class => 'open-in-dialog' %> .
+    <%= link_to 'delete', product_product_backlog_url(
+        :product_id => @product.id, :id => @product_backlog.id),
+                :method => :delete,
+                :confirm => 'Do you really want to remove this item?' %> .
+    <%= link_to 'items', product_product_backlog_backlog_items_url(
+        :product_id => @product.id, :product_backlog_id => @product_backlog.id),
+                :title => 'Product backlog items',
+                :rev => '800' %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(function() {
+    App.detectOpenInDialog();
+  });
+</script>

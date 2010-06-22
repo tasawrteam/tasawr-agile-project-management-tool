@@ -1,0 +1,53 @@
+<html>
+<head>
+  <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag 'jquery.easing', 'jquery.jBreadCrumb' %>
+  <%= javascript_include_tag 'jquery.dataTables' %>
+  <%= stylesheet_link_tag 'grid/demo_page', 'grid/demo_table_jui', 'grid/jquery-ui-1.7.2.custom' %>
+  <%= stylesheet_link_tag 'redmond/jquery-ui', 'breadcrumbs/BreadCrumb' %>
+</head>
+<body>
+  <% if flash[:notice] %>
+    <div style="">
+      <div class="ui-widget on-click-close">
+        <div class="ui-state-error ui-corner-all" style="padding: 2px">
+          <span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
+          <strong>Notice:</strong> <%= flash[:notice] %>
+        </div>
+      </div>
+    </div>
+  <% elsif flash[:success] %>
+    <div style="position: fixed; z-index: 100; top: 5%; left: 40%">
+      <div class="ui-widget on-click-close">
+        <div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 2px;">
+          <span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
+          <%= flash[:success] %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <div class='container'>
+    <%= yield %>
+  </div>
+
+  <div id='content_panel' title='' style="display:none"></div>
+
+  <script type="text/javascript">
+    $('.on-click-close').each(function() {
+      $(this).css('cursor', 'pointer');
+      $(this).click(function() {
+        $(this).fadeOut('fast');
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(function() {
+      App.initDialog();
+      App.detectOpenInDialog();
+      $("#breadCrumb").jBreadCrumb({easing:'swing'});
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<div class='sprint'>
+  <h1>
+    <% if @product %>
+      <%= link_to 'Products', products_url %> &raquo;
+      <%= link_to @product.name, product_url(@product.id) %> &raquo; Sprints
+    <% else %>
+      Sprints
+    <% end %>
+  </h1>
+  <div class='tools'>
+    <%= link_to 'New', new_product_sprint_url(@product) %>
+  </div>
+  <div class='sprints'>
+    <% @sprints.each do |sprint| %>
+      <div class='item'>
+        <div class='content'>
+          <h4>#<%= sprint.id %> - <%= sprint.name %></h4>
+          <%= simple_format(h(sprint.description)) %>
+        </div>
+      </div>
+      <div class='tools'>
+        <%= link_to 'show', product_sprint_url(@product, sprint) %> .
+        <%= link_to 'edit', edit_product_sprint_url(@product, sprint)%> .
+        <%= link_to 'delete', product_sprint_url(@product, sprint),
+                    :confirm => 'Do you really want to remove this item?',
+                    :method => :delete %> .
+        <%= link_to 'backlog items', product_sprint_sprint_backlog_items_url(@product, sprint) %>
+      </div>
+      <hr/>
+    <% end %>
+  </div>
+</div>
+
+<%= render :partial => 'common/grid', :locals => {
+    :element_ref => '#backlog_items',
+    :sorting_pref => [true, false, true, true, false, true]} %>

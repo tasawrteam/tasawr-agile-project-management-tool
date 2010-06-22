@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  backlog_item_id: 1
+  user_id: 1
+  task_status: 1
+  description: MyText
+
+two:
+  backlog_item_id: 1
+  user_id: 1
+  task_status: 1
+  description: MyText

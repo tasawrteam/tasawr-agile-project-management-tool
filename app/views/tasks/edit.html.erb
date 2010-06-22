@@ -1,0 +1,18 @@
+<div class='backlog_item'>
+  <div class='form'>
+    <% form_for :task,
+                :url => product_product_backlog_backlog_item_task_url(
+                    :product_id => @product.id,
+                    :product_backlog_id => @product_backlog.id,
+                    :backlog_item_id => @backlog_item.id,
+                    :id => @task.id),
+                :html => {:method => :put, :class => 'niceform'} do |f| %>
+      <%= render :partial => 'form', :locals => {:f => f} %>
+
+      <dl>
+        <dt>&nbsp;</dt>
+        <dd><%= f.submit 'Update task', :style => 'display: none', :id => 'form_submit_button' %></dd>
+      </dl>
+    <% end %>
+  </div>
+</div>

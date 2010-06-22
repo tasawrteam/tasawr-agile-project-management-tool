@@ -1,0 +1,19 @@
+<div class='product_backlog'>
+  <h1>Edit product backlog </h1>
+  <div class='form'>
+    <% form_for @product_backlog,
+                :url => product_product_backlog_url(
+                    :product_id => @product.id,
+                    :id => @product_backlog.id),
+                :html => {:class => 'niceform'} do |f| %>
+      <%= render :partial => 'form', :locals => {:f => f} %>
+
+      <dl>
+        <dt>&nbsp;</dt>
+        <dd>
+          <input type='submit' id='form_submit_button' style="display: none"/>
+        </dd>
+      </dl>
+    <% end %>
+  </div>
+</div>

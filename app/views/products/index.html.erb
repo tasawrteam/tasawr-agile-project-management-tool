@@ -1,0 +1,31 @@
+
+<div class='product'>
+  <h1>Products</h1>
+  <div class='tools'>
+    <%= link_to 'New', new_product_url %>
+  </div>
+  <div class='products'>
+    <% @products.each do |product| %>
+      <div class='item'>
+        <div class='content'>
+          <h4>#<%= product.id %> - <%= product.name %></h4>
+          <%= simple_format(h(product.description)) %>
+        </div>
+      </div>
+      <div class='tools'>
+        <%= link_to 'show', product_url(product.id) %> . 
+        <%= link_to 'edit', edit_product_url(product.id)%> .
+        <%= link_to 'delete', product_url(product.id),
+                    :confirm => 'Do you really want to remove this item?',
+                    :method => :delete %> .
+        <%= link_to 'product backlogs', product_product_backlogs_url(:product_id => product.id) %> .
+        <%= link_to 'sprints', product_sprints_url(product) %>
+      </div>
+      <hr/>
+    <% end %>
+  </div>
+</div>
+
+<%= render :partial => 'common/grid', :locals => {
+    :element_ref => '#backlog_items',
+    :sorting_pref => [true, false, true, true, false, true]} %>

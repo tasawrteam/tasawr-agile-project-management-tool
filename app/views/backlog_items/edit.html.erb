@@ -1,0 +1,17 @@
+<div class='backlog_item'>
+  <h1>Add item on <%= link_to @product_backlog.name, product_backlog_backlog_items_url(@product_backlog.id) %></h1>
+  <div class='form'>
+    <% form_for @backlog_item,
+                :url => product_product_backlog_backlog_item_url(@product, @product_backlog, @backlog_item),
+                :html => {:method => :put, :class => 'niceform'} do |f| %>
+      <%= render :partial => 'form', :locals => {:f => f} %>
+
+      <dl>
+        <dt>&nbsp;</dt>
+        <dd><%= f.submit 'Update item' %></dd>
+      </dl>
+    <% end %>
+  </div>
+</div>
+
+<%= render :partial => 'common/niceform' %>

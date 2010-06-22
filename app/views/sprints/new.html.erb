@@ -1,0 +1,17 @@
+<div class='sprint'>
+  <h1>Add sprint to <%= link_to @product.name, product_url(@product.id) %></h1>
+  <div class='form'>
+    <% form_for :sprint,
+                :url => product_sprints_url(@product),
+                :html => {:method => :post, :class => 'niceform'} do |f| %>
+      <%= render :partial => 'form', :locals => {:f => f} %>
+
+      <dl>
+        <dt>&nbsp;</dt>
+        <dd><%= f.submit 'Add sprint' %></dd>
+      </dl>
+    <% end %>
+  </div>
+</div>
+
+<%= render :partial => 'common/niceform' %>

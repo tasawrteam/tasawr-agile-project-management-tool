@@ -1,0 +1,14 @@
+<div class='backlog_item'>
+  <div class='form'>
+    <% form_for :backlog_item,
+                :url => product_product_backlog_backlog_items_url(@product, @product_backlog), 
+                :html => {:method => :post, :class => 'niceform'} do |f| %>
+      <%= render :partial => 'form', :locals => {:f => f} %>
+
+      <dl>
+        <dt>&nbsp;</dt>
+        <dd><%= f.submit 'Add item', :id => 'form_submit_button', :style => 'display: none' %></dd>
+      </dl>
+    <% end %>
+  </div>
+</div>

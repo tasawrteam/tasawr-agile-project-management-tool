@@ -1,0 +1,14 @@
+<dl>
+  <dt><%= f.label :name %></dt>
+  <dd><%= f.text_field :name %></dd>
+</dl>
+
+<dl>
+  <dt><%= f.label :description %></dt>
+  <dd><%= f.text_area :description %></dd>
+</dl>
+
+<dl>
+  <dt><%= f.label :product_status %></dt>
+  <dd><%= f.select :product_status, Product::STATUS %></dd>
+</dl>

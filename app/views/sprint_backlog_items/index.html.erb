@@ -1,0 +1,46 @@
+<div class='sprint_backlog_item'>
+  <h1>
+    <%= link_to 'Products', products_url %> &raquo;
+    <%= link_to @product.name, product_url(@product) %> &raquo;
+    <%= link_to @sprint.name, product_sprint_url(@product, @sprint) %> &raquo;
+    Backlogs
+  </h1>
+
+  <div class='form'>
+    <div class='options'>
+      <form>
+        <select name='product_backlog_id'>
+          <% @product_backlogs.each do |pb| %>
+            <option value="<%= pb.id %>" <%= params[:product_backlog_id].to_i == pb.id ? 'selected="selected"' : '' %>><%= pb.name %></option>
+          <% end %>
+        </select>
+        <input type='submit' value='Select'/>
+      </form>
+    </div>
+
+    <% if @product_backlog %>
+      <% @product_backlog.backlog_items.each do |item| %>
+        <div class='product_backlog'>
+          <%= item.name %>
+          <% form_for @sprint_backlog_item,
+                      :url => product_sprint_sprint_backlog_items_url,
+                      :html => {:method => :post} do |f| %>
+            <%= f.hidden_field :sprint_id, :value => @sprint.id %>
+            <%= f.hidden_field :product_id, :value => @product.id %>
+            <%= f.hidden_field :backlog_item_id, :value => item.id %>
+            <%= f.submit 'Add' %>
+          <% end %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class='notification'>
+        Please select any of the above product backlog!
+      </div>
+    <% end %>
+  </div>
+  
+</div>
+
+<%= render :partial => 'common/grid', :locals => {
+    :element_ref => '#backlog_items',
+    :sorting_pref => [true, false, true, true, false, true]} %>

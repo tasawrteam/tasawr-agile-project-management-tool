@@ -1,0 +1,22 @@
+<div class='sprint'>
+  <h1>
+    <%= link_to 'Products', products_url %> &raquo;
+    <%= link_to @product.name, product_url(@product) %> &raquo;
+    <%= link_to 'Sprints', product_sprints_url(@product) %> &raquo;
+    <%= @sprint.name %>
+  </h1>
+  <div class='item'>
+    <div class='content'>
+      <h4>#<%= @sprint.id %> - <%= @sprint.name %></h4>
+      <%= simple_format(h(@sprint.description)) %>
+    </div>
+  </div>
+  <div class='tools'>
+    <%= link_to 'show', product_sprint_url(@product, @sprint) %> .
+    <%= link_to 'edit', edit_product_sprint_url(@product, @sprint)%> .
+    <%= link_to 'delete', product_sprint_url(@product, @sprint),
+                :confirm => 'Do you really want to remove this item?',
+                :method => :delete %>
+  </div>
+  <hr/>
+</div>

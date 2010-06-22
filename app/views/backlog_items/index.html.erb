@@ -1,0 +1,65 @@
+<div class='backlog_item'>
+  <%= render_breadcrumbs [
+      link_to('Products', products_url),
+      link_to(@product.name, product_url(@product.id)),
+      link_to(@product_backlog.name, "#{product_product_backlogs_url(@product)}#backlog-#{@product_backlog.id}"),
+      'Items'] %>
+
+  <div class="ui-widget">
+    <div class="ui-state-highlight ui-corner-all" style="margin-top: 10px; padding: 5px; margin-bottom: 10px;">
+      <%= link_to 'Add new item', new_product_product_backlog_backlog_item_url,
+                  :title => 'Create backlog item', 
+                  :class => 'open-in-dialog' %>
+    </div>
+  </div>
+  <div class="spacer"></div>
+
+  <div class='items'>
+    <table id='backlog_items' cellpadding="5" cellspacing="2"  style="width: 100%">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Size</th>
+          <th>Priority</th>
+          <th>Description</th>
+          <th>Tools</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @backlog_items.each do |item| %>
+          <tr class='item'>
+            <td align="right"><%= item.id %></td>
+            <td><%= item.title %></td>
+            <td align="right"><%= item.item_size %></td>
+            <td align="left"><%= item.item_priority %> (<%= BacklogItem::PRIORITY_MAP[item.item_priority] %>)</td>
+            <td><%= simple_format(h(item.description)) %></td>
+            <td align="center">
+              <%= link_to 'edit', edit_product_product_backlog_backlog_item_url(
+                  :product_id => @product.id,
+                  :product_backlog_id => @product_backlog.id, :id => item) %> .
+              <%= link_to 'delete',
+                          product_product_backlog_backlog_item_url(
+                              @product.id, @product_backlog, item.id),
+                          :confirm => 'Do you really want to remove this item?',
+                          :method => :delete %> .
+              <%= link_to 'tasks', product_product_backlog_backlog_item_tasks_url(
+                  :product_id => @product.id,
+                  :product_backlog_id => @product_backlog.id, :backlog_item_id => item.id) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%= render :partial => 'common/grid', :locals => {
+    :element_ref => '#backlog_items',
+    :sorting_pref => [true, false, true, true, false, true]} %>
+
+<script type="text/javascript">
+  $(function() {
+    App.detectOpenInDialog();
+  });
+</script>

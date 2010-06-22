@@ -1,0 +1,31 @@
+<div class='product_backlog'>
+  <%= render_breadcrumbs [
+      link_to('Products', products_url),
+      link_to(@product.name, product_url(@product.id)),
+      'Backlogs'] %>
+
+  <div id="backlog_item_tabs">
+    <ul>
+      <% @product_backlogs.each do |backlog| %>
+        <li>
+          <%= link_to "<span>#{backlog.name}</span>",
+                      product_product_backlog_url(@product, backlog),
+                      :title => "backlog-#{backlog.id}" %>
+        </li>
+      <% end %>
+      <li>
+        <%= link_to "<span>Add</span>", new_product_product_backlog_url(@product) %>
+      </li>
+    </ul>
+
+    <% @product_backlogs.each do |backlog| %>
+      <div id="backlog-<%= backlog.id %>" class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
+      </div>
+    <% end %>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+  $('#backlog_item_tabs').tabs();  
+</script>

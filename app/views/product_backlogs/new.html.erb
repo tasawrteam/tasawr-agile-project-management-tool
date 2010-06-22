@@ -1,0 +1,15 @@
+<div class='product_backlog'>
+  <h1>Create product backlog </h1>
+  <div class='form'>
+    <% form_for(@product_backlog,
+                :url => product_product_backlogs_url(@product),
+                :html => {:class => 'niceform', :method => :post}) do |f| %>
+      <%= render :partial => 'form', :locals => {:f => f} %>
+
+      <dl>
+        <dt>&nbsp;</dt>
+        <dd><%= f.submit 'Create product backlog' %></dd>
+      </dl>
+    <% end %>
+  </div>
+</div>

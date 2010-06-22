@@ -1,0 +1,22 @@
+<dl>
+  <dt><%= f.label :title %></dt>
+  <dd>
+    <%= f.text_field :title %>
+    <%= f.error_message_on :title %>
+  </dd>
+</dl>
+
+<dl>
+  <dt><%= f.label :description %></dt>
+  <dd><%= f.text_area :description %></dd>
+</dl>
+
+<dl>
+  <dt><%= f.label :item_priority %></dt>
+  <dd><%= f.select :item_priority, BacklogItem::PRIORITY %></dd>
+</dl>
+
+<dl>
+  <dt><%= f.label :item_size %></dt>
+  <dd><%= f.text_field :item_size %></dd>
+</dl>

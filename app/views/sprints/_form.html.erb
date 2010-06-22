@@ -1,0 +1,35 @@
+<dl>
+  <dt><%= f.label :name %></dt>
+  <dd>
+    <%= f.text_field :name %>
+    <%= f.error_message_on :name %>
+  </dd>
+</dl>
+
+<dl>
+  <dt><%= f.label :product_id %></dt>
+  <dd>
+    <%= f.select :product_id, @products.collect{|p| [p.name, p.id]}%>
+    <%= f.error_message_on :product_id %>
+  </dd>
+</dl>
+
+<dl>
+  <dt><%= f.label :description %></dt>
+  <dd><%= f.text_area :description %></dd>
+</dl>
+
+<dl>
+  <dt><%= f.label :status %></dt>
+  <dd><%= f.select :status, Sprint::STATUS %></dd>
+</dl>
+
+<dl>
+  <dt><%= f.label :started_at %></dt>
+  <dd><%= f.date_select :started_at %></dd>
+</dl>
+
+<dl>
+  <dt><%= f.label :ended_at %></dt>
+  <dd><%= f.date_select :ended_at %></dd>
+</dl>

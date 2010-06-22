@@ -1,0 +1,15 @@
+<script type="text/javascript">
+  var backlogTable = null;
+  $(document).ready(function() {
+      backlogTable = $('<%= element_ref %>').dataTable({
+        "bJQueryUI": true,
+        "sPaginationType": "full_numbers",
+        "aaSorting": [[ 3, "desc" ]],
+        "bStateSave": true,
+
+        "aoColumns":  <%= "[#{sorting_pref.collect{|p| p ? "{'asSorting' : ['asc', 'desc']}" : "{'asSorting' : []}"}.join(',')}]" %>
+
+
+    });
+  })
+</script>

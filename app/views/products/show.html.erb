@@ -1,0 +1,21 @@
+<div class='product'>
+  <h1>
+    <%= link_to 'Products', products_url %> &raquo;
+    <%= @product.name %>
+  </h1>
+  <div class='item'>
+    <div class='content'>
+      <h4>#<%= @product.id %> - <%= @product.name %></h4>
+      <%= simple_format(h(@product.description)) %>
+    </div>
+  </div>
+  <div class='tools'>
+    <%= link_to 'edit', edit_product_url(@product.id)%> .
+    <%= link_to 'delete', product_url(@product.id),
+                :confirm => 'Do you really want to remove this item?',
+                :method => :delete %> .
+    <%= link_to 'product backlogs', product_product_backlogs_url(:product_id => @product.id) %> .
+    <%= link_to 'sprints', product_sprints_url(@product) %>
+  </div>
+  <hr/>
+</div>

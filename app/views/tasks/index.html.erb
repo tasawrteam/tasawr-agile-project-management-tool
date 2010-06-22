@@ -1,0 +1,70 @@
+<div class='task'>
+  <%= render_breadcrumbs [
+      link_to('Products', products_url),
+      link_to(@product.name, product_url(@product.id)),
+      link_to(@product_backlog.name,
+              "#{product_product_backlogs_url(@product)}#backlog-#{@product_backlog.id}"),
+      link_to(@backlog_item.title,
+              "#{product_product_backlog_backlog_items_url(
+                  @product, @product_backlog)}"),
+      'Tasks'
+      ] %>
+
+  <div class="ui-widget">
+    <div class="ui-state-highlight ui-corner-all" style="margin-top: 10px; padding: 5px; margin-bottom: 10px;">
+      <%= link_to 'Add new task', new_product_product_backlog_backlog_item_task_url(:product_id => @product.id),
+                  :title => 'Create backlog item', 
+                  :class => 'open-in-dialog' %>
+    </div>
+  </div>
+  <div class='tools'>
+
+  </div>
+
+  <div class='tasks'>
+    <table id='backlog_tasks'  cellpadding="5" cellspacing="2"  style="width: 100%">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Added by</th>
+          <th>Status</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Tools</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @tasks.each do |task| %>
+          <tr>
+            <td align="right"><%= task.id %></td>
+            <td><%= task.user.login %></td>
+            <td align="center"><%= Task::STATUS_MAP[task.task_status] %></td>
+            <td align="center"><%= Task::TYPES_MAP[task.task_type] %></td>
+            <td><%= simple_format(h(task.description)) %></td>
+            <td align="center">
+              <%= link_to 'edit', edit_product_product_backlog_backlog_item_task_url(
+                    :product_id => @product.id,
+                    :product_backlog_id => @product_backlog.id,
+                    :backlog_item_id => @backlog_item.id,
+                    :id => task.id),
+                          :title => 'Edit task',
+                          :class => 'open-in-dialog' %> .
+              <%= link_to 'delete', product_product_backlog_backlog_item_task_url(
+                    :product_id => @product.id,
+                    :product_backlog_id => @product_backlog.id,
+                    :backlog_item_id => @backlog_item.id,
+                    :id => task.id),
+                  :confirm => 'Do you really want to remove this task?',
+                  :method => :delete %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%= render :partial => 'common/grid', :locals => {
+    :element_ref => '#backlog_tasks',
+    :sorting_pref => [true, true, true, true, false, false]} %>
